@@ -13,7 +13,6 @@ def create_app():
 
     @app.route("/")
     def index():
-        REQUEST_COUNT.inc()
         return render_template("index.html")
     
     @app.route("/get", methods=["POST"])
