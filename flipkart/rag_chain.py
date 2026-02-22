@@ -6,7 +6,9 @@ from langchain_core.runnables import RunnablePassthrough, RunnableWithMessageHis
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.prompts import MessagesPlaceholder
+from langchain_core.documents import Document
 
+from typing import List
 from flipkart.config import config
 
 
@@ -68,7 +70,7 @@ class RAGChainBuilder:
             A chain that stuffs retrieved documents into the prompt for the language model.
         """
 
-        def format_docs(docs):
+        def format_docs(docs: List[Document]) -> str:
             return "\n\n".join(doc.page_content for doc in docs)
         
         chain = (
